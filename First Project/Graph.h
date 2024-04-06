@@ -25,23 +25,6 @@ public:
         }
     }
 
-    //Graph(const Graph& graph)
-    //{
-    //    this->numVertices = graph.numVertices;
-
-    //    // Allocate memory for the adjacency matrix
-    //    this->adjMatrix = new bool* [numVertices];
-    //    for (int i = 0; i < numVertices; ++i) {
-    //        this->adjMatrix[i] = new bool[numVertices];
-    //    }
-
-    //    for (int i = 0; i < numVertices; i++) {
-    //        for (int j = 0; j < numVertices; j++) {
-    //            this->adjMatrix[i][j] = graph.adjMatrix[i][j];
-    //        }
-    //    }
-
-    //}
 
     // Add edges
     void addEdge(int i, int j) {
@@ -85,7 +68,7 @@ public:
         return adjMatrix[index];
     }
 
-  
+
 
     ~Graph() {
         for (int i = 0; i < numVertices; i++) {
