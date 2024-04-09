@@ -74,21 +74,31 @@ int main() {
     }
 
     std::cout << std::endl;
+
+    Graph condensed_g(components.size());
     LinearProcess LinearProcessChecker;
+    LinearProcessChecker.Condense_The_Graph(g, condensed_g, components);
+
+    condensed_g.Print();
+
     // Call the isLinear function from LinearProcessChecker class
-    std::unordered_set<int> isLinearSet = LinearProcessChecker.isLinear(g, 0);
+    std::unordered_set<int> isLinearSet = LinearProcessChecker.isLinear(condensed_g, 0);
 
     // Output the result
-    if (isLinearSet.size() == N) {
+    if (isLinearSet.size() == components.size()) {
         std::cout << std::endl << "Yes. The process represented by the graph is linear." << std::endl;
         std::cout << "The process is linear because the production passes through all stages and passes in the following sequence : ";
-        for (int element : isLinearSet) {
-            for (int el_of_vec : my_vec) {
-                if (element == el_of_vec) {
-                    std::cout << element << " ";
+        for (int el : isLinearSet) {
+            for (int element : components[el]) {
+                for (int el_of_vec : my_vec) {
+                    if (element == el_of_vec) {
+                        std::cout << element << " ";
+                    }
                 }
-            }
 
+
+
+            }
         }
     }
     else {
