@@ -49,7 +49,7 @@ int main() {
 
         int count = 0;
 
-        for (int i = el[0] - 1; i > 0; --i) {
+        for (int i = el[0] - 1; i >= 0; --i) {
 
             if (g[el[0]][i]) {
                 count++;
@@ -72,31 +72,31 @@ int main() {
 
 
     for (int i = 0; i < my_vec.size(); ++i) {
-        bool incoming = 0;
-        for (int k = i; k < N; ++k) {
 
-            incoming | g[k][i];
+        bool incoming = false;
+
+        for (int k = my_vec[i] + 1; k < N; ++k) {
+
+            if (g[k][my_vec[i]]) {
+                incoming = true;
+                break;
+            }
         }
 
         if (incoming) {
-
             std::cout << "We can go back to " << my_vec[i] << " from  ";
-
-            for (int j = i; j < N; ++j) {
-
+            for (int j = my_vec[i]; j < N; ++j) {
                 if (g[j][my_vec[i]]) {
                     std::cout << j << "-" << our_production.index_to_name[j] << " ";
                 }
             }
             std::cout << "." << std::endl;
-
         }
-
         else {
-
-            std::cout << "Moving to the next stage, we will never be able to go back to  " << my_vec[i] << " stage." << std::endl;
+            std::cout << "Moving to the next stage, we will never be able to go back to " << my_vec[i] << " stage." << std::endl;
         }
     }
+
 
     std::cout << std::endl;
 

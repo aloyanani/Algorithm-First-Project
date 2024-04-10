@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Graph.h"
 #include "invert.h"
 
@@ -11,8 +10,11 @@ private:
     std::stack<int> my_stack;
 
     void FirstDFS(int vertex) {
+
         visited[vertex] = true;
+
         for (int i = 0; i < num_of_vertices; ++i) {
+
             if (graph[vertex][i] && !visited[i]) {
                 FirstDFS(i);
             }
@@ -21,9 +23,12 @@ private:
     }
 
     void SecondDFS(int vertex, std::vector<int>& component) {
+
         visited[vertex] = true;
         component.push_back(vertex);
+
         for (int i = 0; i < num_of_vertices; ++i) {
+
             if (graph[i][vertex] && !visited[i]) {
                 SecondDFS(i, component);
             }
@@ -31,7 +36,9 @@ private:
     }
 
     void cleanVisited() {
+
         for (int i = 0; i < num_of_vertices; ++i) {
+
             visited[i] = false;
         }
     }
@@ -47,6 +54,7 @@ public:
         cleanVisited();
 
         for (int i = 0; i < num_of_vertices; ++i) {
+
             if (!visited[i]) {
                 FirstDFS(i);
             }
@@ -59,6 +67,7 @@ public:
         cleanVisited();
 
         while (!my_stack.empty()) {
+
             int vertex = my_stack.top();
             my_stack.pop();
 
